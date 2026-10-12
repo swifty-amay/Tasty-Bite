@@ -1,0 +1,12 @@
+# secrets and local files
+menu_images/
+.DS_Store
+
+# build output
+bin/
+build/
+release/
+dist/
+out/
+*.class
+.settings/

@@ -4,6 +4,10 @@ A Java desktop application for restaurant ordering. Customers pick a restaurant,
 
 Built by a team of five developers with **Java (Swing only)**, **JDBC** and **MySQL**.
 
+## Google Drive Link
+This link contains all the technical documents and project demonstration video. Kindly go through this link for further details - [Click Here](https://drive.google.com/drive/folders/1HPuF6Kmo_9hgiIoNs94X0RUUwZ9CiDjV?usp=sharing) 
+
+
 ## Contents
 
 1. [Features](#1-features)

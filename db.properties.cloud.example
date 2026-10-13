@@ -1,0 +1,6 @@
+# Settings for an ONLINE (cloud) MySQL database.
+# Copy this file to db.properties and replace HOST, PORT, USER and PASSWORD with the values from your database provider.
+# Cloud databases need an encrypted connection, so the address ends with ?sslMode=REQUIRED
+db.url=jdbc:mysql://HOST:PORT/tasty_bite?sslMode=REQUIRED
+db.user=USER
+db.password=PASSWORD

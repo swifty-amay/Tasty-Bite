@@ -1,0 +1,104 @@
+name: Build Windows app
+
+# Run it by hand (Actions tab, Run workflow) to get the app as a download,
+# or push a tag such as v1.0 to also publish it on the Releases page.
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  windows-app:
+    runs-on: windows-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Install JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Get the MySQL driver if the lib folder has none
+        shell: bash
+        run: |
+          mkdir -p lib
+          if ! ls lib/*.jar >/dev/null 2>&1; then
+            curl -fsSL -o lib/mysql-connector-j-8.0.33.jar \
+              https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar
+          fi
+          ls -la lib
+
+      - name: Compile and build one runnable JAR
+        shell: bash
+        run: |
+          rm -rf build dist release
+          mkdir -p build/classes dist
+          find src -name "*.java" > sources.txt
+          javac -d build/classes -cp "lib/*" @sources.txt
+          if [ -d resources ]; then cp -R resources/. build/classes/; fi
+          for j in lib/*.jar; do
+            ( cd build/classes && jar xf "../../$j" )
+          done
+          rm -f build/classes/META-INF/*.SF build/classes/META-INF/*.RSA build/classes/META-INF/*.DSA \
+                build/classes/META-INF/MANIFEST.MF build/classes/module-info.class
+          jar cfe dist/TastyBite.jar com.tastybite.Main -C build/classes .
+          ls -la dist
+
+      - name: Create the Windows app (TastyBite.exe with its own Java)
+        shell: bash
+        run: |
+          jpackage --type app-image --name TastyBite \
+            --input dist --main-jar TastyBite.jar --main-class com.tastybite.Main \
+            --dest release
+          ls release/TastyBite
+
+      - name: Add the database scripts and a first-run note
+        shell: bash
+        run: |
+          cp tasty_bite.sql reset_data.sql release/TastyBite/ 2>/dev/null || true
+          cat > release/TastyBite/README-FIRST.txt <<'TXT'
+          Tasty Bite for Windows
+
+          Just double-click TastyBite.exe.
+
+          This folder should contain a file called db.properties next to TastyBite.exe.
+          It points the app at the online database, so you do not have to install anything
+          else. You only need an internet connection.
+
+          First time: choose Manager, register with a restaurant name, add a few menu items,
+          then log out, choose User, register a customer and place an order.
+          If a DEMO-ACCOUNTS.txt file is in this folder, you can log in with those accounts instead.
+
+          If db.properties is missing (to use your own local database instead):
+            1. Install MySQL 8 and run tasty_bite.sql (in this folder).
+            2. Start TastyBite.exe once. It creates a settings file at
+               C:\Users\<your name>\TastyBite\db.properties
+            3. Open that file in Notepad, put your MySQL password after db.password=,
+               save it and start the app again.
+
+          reset_data.sql empties all data and keeps the tables.
+          If Windows says it protected your PC, click More info, then Run anyway.
+          TXT
+          sed -i 's/^          //' release/TastyBite/README-FIRST.txt
+
+      - name: Zip the app
+        shell: pwsh
+        run: Compress-Archive -Path release/TastyBite -DestinationPath TastyBite-windows.zip
+
+      - name: Keep the zip as a download of this run
+        uses: actions/upload-artifact@v4
+        with:
+          name: TastyBite-windows
+          path: TastyBite-windows.zip
+
+      - name: Publish on the Releases page (tag builds only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: TastyBite-windows.zip

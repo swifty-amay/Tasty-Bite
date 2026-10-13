@@ -1,0 +1,5 @@
+# Settings for a LOCAL MySQL database.
+# Copy this file to db.properties and put your own MySQL password in it.
+db.url=jdbc:mysql://localhost:3306/tasty_bite?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+db.user=root
+db.password=your_mysql_password

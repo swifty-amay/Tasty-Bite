@@ -1,0 +1,21 @@
+# secrets and local settings
+db.properties
+DEMO_ACCOUNTS.txt
+DEMO-ACCOUNTS.txt
+
+# photos added by managers (local data)
+menu_images/
+
+# Eclipse and build output
+bin/
+build/
+dist/
+release/
+out/
+*.class
+.classpath
+.project
+.settings/
+
+# macOS
+.DS_Store

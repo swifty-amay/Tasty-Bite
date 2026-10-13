@@ -8,7 +8,7 @@ Built by a team of five developers with **Java (Swing only)**, **JDBC** and **My
 
 No installation is needed. The download already points at an online database.
 
-1. Download **[TastyBite-for-Windows.zip](DRIVE-LINK-HERE)** from Google Drive (shared with the course teacher).
+1. Download **[TastyBite-for-Windows.zip](https://drive.google.com/file/d/1zN7zMi1gyS13N9jbAgzHx47jgnpFWN3Q/view?usp=sharing)** from Google Drive (shared with the course teacher).
 2. Unzip it and double-click **TastyBite.exe** inside the `TastyBite` folder. An internet connection is required.
 3. If Windows says it protected your PC, click **More info**, then **Run anyway** (the app is not code-signed).
 4. Log in with the accounts in `DEMO-ACCOUNTS.txt`, or register a new manager (with a restaurant name) and a customer.

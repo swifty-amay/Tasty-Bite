@@ -4,6 +4,12 @@ A Java desktop application for restaurant ordering. Customers pick a restaurant,
 
 Built by a team of five developers with **Java (Swing only)**, **JDBC** and **MySQL**.
 
+
+## Google Drive Link
+All the required documents regarding this project have been uploaded on the google drive. Kindly click on below link to view it - [Click Here](https://drive.google.com/drive/folders/1HPuF6Kmo_9hgiIoNs94X0RUUwZ9CiDjV?usp=sharing)
+
+
+
 ## Quick start: download and run (Windows)
 
 No installation is needed. The download already points at an online database.
@@ -288,7 +294,7 @@ Five developers built the project. Each owned a separate set of files, so the wo
 | 7 Update Menu | Developer 5 | Developer 3 |
 | 8 My Orders | Developer 4 | Developer 2 |
 
-### Developer 1: Tech Lead, Database and Core Architect
+### Developer 1: Tech Lead, Database and Core Architect (AMAY RAJ SRIVASTAV [24EARCS018])
 
 - Designed the layered architecture and the seven-table database, with keys, indexes and the trigger that creates default menu sections.
 - Wrote the core of the application: the database connection with connection reuse (fast against an online database), the settings and file locations, salted password hashing, the session, and the helper that shows order times correctly in any time zone.
@@ -297,7 +303,7 @@ Five developers built the project. Each owned a separate set of files, so the wo
 - Reviewed every change touching the database or security, ran the weekly integration builds, merged all pull requests and tagged the releases.
 - Wrote the Preparing-status migration, the data reset script, the Mac packaging script and the setup and technical documentation, and carried out the security review.
 
-### Developer 2: Backend Developer, Customer Flow
+### Developer 2: Backend Developer, Customer Flow (ANJALI SINGH [24EARCS021])
 
 - Built the menu backend: restaurant list and menu by section, hiding empty sections and deleted items (module 2).
 - Built the cart classes and the bill calculation with tax and correct rounding.
@@ -305,7 +311,7 @@ Five developers built the project. Each owned a separate set of files, so the wo
 - Built order placing (module 4): the order and its lines saved in one transaction, names and prices copied into the order, and a check against the live menu so a customer never pays a price they did not see.
 - Built the backend for My Orders (module 8): the customer's own orders across restaurants with their items.
 
-### Developer 3: Backend Developer, Manager Flow
+### Developer 3: Backend Developer, Manager Flow (ANUSHKA RAI [24EARCS027])
 
 - Built menu editing (module 7 backend): adding, editing and soft-deleting items, adding and renaming sections, every query limited to the manager's own restaurant.
 - Built photo handling: only real JPG, PNG or GIF images under 5 MB are accepted, copied into the app's photo folder.
@@ -313,7 +319,7 @@ Five developers built the project. Each owned a separate set of files, so the wo
 - Built the history backend (module 6): all orders, newest first, capped list.
 - Defined the order status rules and the ownership checks that keep one restaurant's data private from another.
 
-### Developer 4: Frontend Developer, Customer Screens and UI System
+### Developer 4: Frontend Developer, Customer Screens and UI System (ABHISHEK GOYAL [24EARCS005])
 
 - Created the look of the whole application: the theme (colours, fonts, buttons, cards), the profile icon, the background and the shared helpers for money and images.
 - Built the welcome, login and registration screens (module 1).
@@ -322,7 +328,7 @@ Five developers built the project. Each owned a separate set of files, so the wo
 - Built My Orders (module 8): orders grouped as In progress and Past orders, status labels, plain-language status lines and live refresh.
 - Wrote the customer user guide and gave the customer demo.
 
-### Developer 5: Frontend Developer, Manager Screens and QA Lead
+### Developer 5: Frontend Developer, Manager Screens and QA Lead (AAKRITI GUPTA [24EARCS001])
 
 - Built the manager dashboard (module 5): latest orders, View Order popup, start, cancel and complete buttons, a status column and refresh every 10 seconds.
 - Built the history screen (module 6) with status labels and filter buttons.
